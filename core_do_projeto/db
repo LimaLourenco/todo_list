@@ -1,0 +1,22 @@
+{
+  "todos": [
+    {
+      "id": "9d32b186-24bd-42e8-8617-319c43ec958a",
+      "date": "2024-03-26T23:09:00.082Z",
+      "content": "Primeira TODO!!!",
+      "done": false
+    },
+    {
+      "id": "4fca1e64-4d5a-45d2-a402-e16cbea9c3ad",
+      "date": "2024-03-26T23:09:00.089Z",
+      "content": "Terceira TODO com um novo content!",
+      "done": false
+    },
+    {
+      "id": "1dfc2f33-d276-4f43-9d09-efb440fad84f",
+      "date": "2024-03-26T23:09:00.089Z",
+      "content": "Quarta TODO com um novo content!",
+      "done": false
+    }
+  ]
+}
