@@ -1,5 +1,6 @@
 import React from "react";
-import { GlobalStyles } from "../src/theme/GlobalStyles"
+// import { GlobalStyles } from "../src/ui/theme/GlobalStyles"
+import { GlobalStyles } from "@ui/theme/GlobalStyles";
 
 const bg = "./bg.jpg"; // inside public folder
 
