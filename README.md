@@ -7,3 +7,5 @@
 2. Carregando nossa UI;
 
 3. Ajustando Paths relativos no TypeScript;
+
+4. Linter: O segundo nível de qualidade, o TypeScript já foi o primeiro;
