@@ -8,5 +8,5 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
 
 // Lembrando que o response, é como eu mando as informações para o usuário;
 // Já o request, é quando o usuário faz a solicitação (request), 
-// e eu posso olhar no console do browser, e ver as chamadas de api especificas,
-// para as solicitações.
+// e eu posso olhar no console do browser, e ver as chamadas de apis especificas,
+// das solicitações dos usuarios.
