@@ -1,5 +1,5 @@
 module.exports = {
-    parser: "@typescript-eslint/parser", // perei 11:00
+    parser: "@typescript-eslint/parser",
     env: {
         browser: true,
         es2021: true,
@@ -23,5 +23,9 @@ module.exports = {
         },
     },
     ignorePatterns: ["node_modules/", "_explicacoes/"],
-    rules: {},
+    rules: {
+        "react/no-unknown-property": ["error", { ignore: ["jsx", "global"] }],
+        // "no-console": 2,
+        "no-console": "error",
+    },
 };

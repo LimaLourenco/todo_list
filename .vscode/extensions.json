@@ -1,5 +1,10 @@
 {
+    // Observação: Se eu quiser trazer as extensões como: O EditorConfig,
+    // e o dbaeumer.vscode-eslint para todo mundo do meu time pode usar no vscode, por exemplo
+    // é criar a pasta .vscode e o arquivo extensions.json, e dentro do arquivo vou cria o objeto, e passar as extensões recomendas para o resto do time pode instalar. 
+
     "recommendations": [
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint"
     ]
 }
