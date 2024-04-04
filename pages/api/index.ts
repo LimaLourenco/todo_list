@@ -10,6 +10,6 @@ export default function handler(
 }
 
 // Lembrando que o response, é como eu mando as informações para o usuário;
-// Já o request, é quando o usuário faz o a solicitação (request),
-// e eu posso olhar no console do browser, e ver as chamadas de api especificas,
-// para as solicitações.
+// Já o request, é quando o usuário faz a solicitação (request),
+// e eu posso olhar no console do browser, e ver as chamadas de apis especificas,
+// das solicitações dos usuarios.
