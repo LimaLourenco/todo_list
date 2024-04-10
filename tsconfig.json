@@ -108,7 +108,13 @@
     "paths": {
       "@ui/*": [
         "src/ui/*"
-      ] 
+      ],
+      "@db-crud-todo": [
+        "core_do_projeto/core.ts"
+      ],
+      "@server/*": [
+        "src/server/*"
+      ]
     }
   },
   "include": [

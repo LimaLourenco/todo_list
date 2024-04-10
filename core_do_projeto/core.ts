@@ -3,7 +3,7 @@ import fs from "fs"; // ES6.
 import { v4 as uuid } from "uuid";
 const DB_FILE_PATH = "./core_do_projeto/db";
 
-console.log("[CRUD]");
+// console.log("[CRUD]");
 
 type UUID = string;
 
@@ -38,10 +38,10 @@ function create(content: string): Todo {
     return todo;
 }
 
-function read(): Array<Todo> {
+export function read(): Array<Todo> {
     const dbString = fs.readFileSync(DB_FILE_PATH, "utf-8");
 
-    console.log(dbString, "III");
+    // console.log(dbString, "III");
 
     const db = JSON.parse(dbString || "{}");
     if (!db.todos) {
@@ -115,20 +115,20 @@ function CRUD_DB() {
     fs.writeFileSync(DB_FILE_PATH, "");
 }
 
-CRUD_DB();
-create("Primeira TODO!!!");
+// CRUD_DB();
+// create("Primeira TODO!!!");
 
-const secondTodo = create("Segunda TODO!!!");
-deleteById(secondTodo.id);
+// const secondTodo = create("Segunda TODO!!!");
+// deleteById(secondTodo.id);
 
-const thirdTodo = create("Segunda TODO!!!");
-const fourTodo = create("Segunda TODO!!!");
+// const thirdTodo = create("Segunda TODO!!!");
+// const fourTodo = create("Segunda TODO!!!");
 
-updateContentById(thirdTodo.id, "Terceira TODO com um novo content!");
-updateContentById(fourTodo.id, "Quarta TODO com um novo content!");
+// updateContentById(thirdTodo.id, "Terceira TODO com um novo content!");
+// updateContentById(fourTodo.id, "Quarta TODO com um novo content!");
 
-const todos = read();
+// const todos = read();
 
-// eslint-disable-next-line no-console
-console.log(todos, "GG");
-console.log(todos.length);
+// // eslint-disable-next-line no-console
+// console.log(todos, "GG");
+// console.log(todos.length);
