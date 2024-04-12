@@ -3,7 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 // import { read } from "@db-crud-todo";
 import { todoController } from "@server/controller/todo";
 
-// handler -> faz a conexão do sistema.
+// handler -> A funcao handler(), é a função que captura o request pra mim (ou seja as solicitações).
+// E também faz o conectar, ou conexão do sistema.
 export default function handler(
     request: NextApiRequest,
     response: NextApiResponse
