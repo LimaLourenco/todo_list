@@ -72,12 +72,12 @@ function HomePage() {
                         {todos.map((currentTodo) => {
                             return (
                                 <tr key={currentTodo.id}>
-                                    {/* Aqui estou passando o id por inteiro, como id único, baseado-se na quantidade de itens da Api. */}
+                                    {/* Aqui estou passando o id por inteiro, como id único, que é baseado na quantidade de itens da Api. */}
                                     <td>
                                         <input type="checkbox" />
                                     </td>
                                     <td>{currentTodo.id.substring(0, 5)}</td>
-                                    {/* Aqui o id tembém é único, mas cada item é baseado no seu id especifico. */}
+                                    {/* Aqui o id também é passado como único, mas cada item da Api, vai ser baseado no seu id especifico. */}
                                     <td>{currentTodo.content}</td>
                                     <td align="right">
                                         <button data-type="delete">
