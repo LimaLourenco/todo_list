@@ -28,6 +28,16 @@ const todos = [
 function HomePage() {
     console.log(todos, "todos");
 
+    // console.log("TODOS", fetch("http://localhost:3002/api/todos"));
+
+    fetch("/api/todos").then(async (respostaDoServidor) => {
+        // Pegando os dados que vem do Back-end
+        const todosString = await respostaDoServidor.text();
+        const todos = JSON.parse(todosString).todos;
+        console.log("TODOS", respostaDoServidor);
+        console.log("TODOS", todos);
+    });
+
     return (
         <main>
             {/* {todos} */}
