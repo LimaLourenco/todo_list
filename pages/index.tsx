@@ -31,7 +31,7 @@ function HomePage() {
     // console.log("TODOS", fetch("http://localhost:3002/api/todos"));
 
     fetch("/api/todos").then(async (respostaDoServidor) => {
-        // Pegando os dados que vem do Back-end
+        // Pegando os dados que vem do Back-end, ou seja do banco de dados
         const todosString = await respostaDoServidor.text();
         const todos = JSON.parse(todosString).todos;
         console.log("TODOS", respostaDoServidor);
