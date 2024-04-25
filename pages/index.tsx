@@ -1,42 +1,34 @@
 import React from "react";
 // import { GlobalStyles } from "../src/ui/theme/GlobalStyles"
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
+import todos from "./api/todos";
+import { todoController } from "@ui/controller/todo";
 
 const bg = "./bg.jpg"; // inside public folder
 
-const todos = [
-    {
-        id: "ca2fdc57-8916-4b74-a39c-5c0ac920707e",
-        date: "2024-04-09T12:01:28.744Z",
-        content: "Primeira TODO!!!",
-        done: false,
-    },
-    {
-        id: "14f5da09-559b-4c3b-abf8-ca8cbdee239d",
-        date: "2024-04-09T12:01:28.747Z",
-        content: "Terceira TODO com um novo content!",
-        done: false,
-    },
-    {
-        id: "6277d0c8-697a-47db-9d8d-cdcea0fe0678",
-        date: "2024-04-09T12:01:28.748Z",
-        content: "Quarta TODO com um novo content!",
-        done: false,
-    },
-];
+// const todos = [];
+
+interface HomeTodo {
+    id: string;
+    content: string;
+}
 
 function HomePage() {
-    console.log(todos, "todos");
+    // console.log(todos, "todos");
+
+    const [todos, setTodos] = React.useState<HomeTodo[]>([]);
+
+    // Load infos onload
+    React.useEffect(() => {
+        // Quando ele tiver terminado
+        todoController.get().then((todos) => {
+            console.log(todos, "AAA");
+
+            setTodos(todos);
+        });
+    }, []);
 
     // console.log("TODOS", fetch("http://localhost:3002/api/todos"));
-
-    fetch("/api/todos").then(async (respostaDoServidor) => {
-        // Pegando os dados que vem do Back-end, ou seja do banco de dados
-        const todosString = await respostaDoServidor.text();
-        const todos = JSON.parse(todosString).todos;
-        console.log("TODOS", respostaDoServidor);
-        console.log("TODOS", todos);
-    });
 
     return (
         <main>
