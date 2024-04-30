@@ -16,12 +16,15 @@ interface HomeTodo {
 function HomePage() {
     // console.log(todos, "todos");
 
+    // Estado da página - Paginação
+    const [page, setPage] = React.useState(1);
+
     const [todos, setTodos] = React.useState<HomeTodo[]>([]);
 
     // Load infos onload
     React.useEffect(() => {
         // Quando ele tiver terminado
-        todoController.get().then((todos) => {
+        todoController.get({ page }).then((todos) => {
             console.log(todos, "AAA");
 
             setTodos(todos);
@@ -106,14 +109,17 @@ function HomePage() {
                             </td>
                         </tr> */}
 
-                        {/* <tr>
+                        <tr>
                             <td
                                 colSpan={4}
                                 align="center"
                                 style={{ textAlign: "center" }}
                             >
-                                <button data-type="load-more">
-                                    Carregar mais{" "}
+                                <button
+                                    data-type="load-more"
+                                    onClick={() => setPage(page + 1)}
+                                >
+                                    Página {page}, Carregar mais{""}
                                     <span
                                         style={{
                                             display: "inline-block",
@@ -125,7 +131,7 @@ function HomePage() {
                                     </span>
                                 </button>
                             </td>
-                        </tr> */}
+                        </tr>
                     </tbody>
                 </table>
             </section>
