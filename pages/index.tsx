@@ -21,7 +21,7 @@ function HomePage() {
 
     const [todos, setTodos] = React.useState<HomeTodo[]>([]);
 
-    // Load infos onload
+    // Load infos onload -> Carregar informações ao carregar
     React.useEffect(() => {
         // Quando ele tiver terminado
         todoController.get({ page }).then((todos) => {

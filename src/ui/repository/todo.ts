@@ -10,7 +10,7 @@ export const todoRepository = {
     get,
 };
 
-// Seria uma Model ou Schema - // Parei em 9:45
+// Seria um exemplo de: Model ou Schema - // Parei em 9:45
 interface Todo {
     id: string;
     content: string;

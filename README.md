@@ -14,4 +14,4 @@
 
 5. GET - Protocolo HTTP Integrando do Back ao Front com Controllers;
 
-5.1. Melhorando nossa tipagem, Repositories e o começo da paginação;
+5.1. Melhorando a tipagem, Repositories e o começo da paginação;
