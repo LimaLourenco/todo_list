@@ -5,6 +5,8 @@ interface TodoRepositoryGetParams {
 
 interface TodoRepositoryGetOutput {
     todos: Todo[];
+    pages: number;
+    total: number;
 }
 
 function get({
@@ -17,8 +19,12 @@ function get({
         const todosFromServer = JSON.parse(todosString).todos;
         // return todosFromServer;
 
+        const ALL_TODOS = todosFromServer;
+
         return {
-            todos: todosFromServer,
+            todos: ALL_TODOS,
+            total: ALL_TODOS.length,
+            pages: 1,
         };
 
         // console.log("III", todos);

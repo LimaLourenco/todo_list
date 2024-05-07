@@ -1,7 +1,6 @@
 import React from "react";
 // import { GlobalStyles } from "../src/ui/theme/GlobalStyles"
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
-import todos from "./api/todos";
 import { todoController } from "@ui/controller/todo";
 
 const bg = "./bg.jpg"; // inside public folder
@@ -24,7 +23,7 @@ function HomePage() {
     // Load infos onload -> Carregar informações ao carregar
     React.useEffect(() => {
         // Quando ele tiver terminado
-        todoController.get({ page }).then((todos) => {
+        todoController.get({ page }).then(({ todos }) => {
             console.log(todos, "AAA");
 
             setTodos(todos);
