@@ -19,12 +19,19 @@ function get({
         const todosFromServer = JSON.parse(todosString).todos;
         // return todosFromServer;
 
+        console.log("page", page);
+        console.log("limit", limit);
+
         const ALL_TODOS = todosFromServer;
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        const paginatedTodos = ALL_TODOS.slice(startIndex, endIndex);
+        const totalPages = Math.ceil(ALL_TODOS.length / limit);
 
         return {
-            todos: ALL_TODOS,
+            todos: paginatedTodos,
             total: ALL_TODOS.length,
-            pages: 1,
+            pages: totalPages,
         };
 
         // console.log("III", todos);

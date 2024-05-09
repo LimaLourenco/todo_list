@@ -6,10 +6,12 @@ interface TodoControllerGetParams {
 }
 
 // Vai retornar um dado assincrono, porque eu não sei quando este dado vai retorna.
-async function get({ page }: TodoControllerGetParams = {}) {
+async function get(params: TodoControllerGetParams = {}) {
+    // eslint-disable-next-line no-console
+    console.log(params, "OOO");
     return todoRepository.get({
-        page: page || 1,
-        limit: 10,
+        page: 1,
+        limit: 1,
     });
 }
 

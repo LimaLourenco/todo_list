@@ -2,6 +2,7 @@ import React from "react";
 // import { GlobalStyles } from "../src/ui/theme/GlobalStyles"
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
 import { todoController } from "@ui/controller/todo";
+import todos from "./api/todos";
 
 const bg = "./bg.jpg"; // inside public folder
 
