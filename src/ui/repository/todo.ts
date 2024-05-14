@@ -16,7 +16,9 @@ function get({
     return fetch("/api/todos").then(async (respostaDoServidor) => {
         // Pegando os dados que vem do Back-end, ou seja, do banco de dados
         const todosString = await respostaDoServidor.text();
-        const todosFromServer = JSON.parse(todosString).todos;
+        const todosFromServer = parseTodosFromServer(
+            JSON.parse(todosString)
+        ).todos;
         // return todosFromServer;
 
         console.log("page", page);
@@ -56,4 +58,17 @@ interface Todo {
     content: string;
     date: Date;
     done: boolean;
+}
+
+function parseTodosFromServer(responseBody: unknown): { todos: Array<Todo> } {
+    console.log("responseBody", responseBody);
+
+    // P -> 5:27
+    if (responseBody !== null) {
+        console.log("responseBody", responseBody);
+    }
+
+    return {
+        todos: [],
+    };
 }
