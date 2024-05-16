@@ -63,9 +63,36 @@ interface Todo {
 function parseTodosFromServer(responseBody: unknown): { todos: Array<Todo> } {
     console.log("responseBody", responseBody);
 
-    // P -> 5:27
-    if (responseBody !== null) {
-        console.log("responseBody", responseBody);
+    // P -> 5:27 -> 9:55
+    if (
+        responseBody !== null &&
+        typeof responseBody === "object" &&
+        "todos" in responseBody &&
+        Array.isArray(responseBody.todos)
+    ) {
+        console.log("responseBody", responseBody.todos);
+
+        return {
+            todos: responseBody.todos.map((todo: unknown) => {
+                if (todo === null && typeof todo !== "object") {
+                    throw new Error("Invalid todo from API");
+                }
+
+                const { id, content, done, date } = todo as {
+                    id: string;
+                    content: string;
+                    date: string;
+                    done: string;
+                };
+
+                return {
+                    id,
+                    content,
+                    done: Boolean(done),
+                    date: new Date(date),
+                };
+            }),
+        };
     }
 
     return {
