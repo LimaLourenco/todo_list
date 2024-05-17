@@ -27,7 +27,7 @@ function get({
         const ALL_TODOS = todosFromServer;
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        const paginatedTodos = ALL_TODOS.slice(startIndex, endIndex);
+        const paginatedTodos = ALL_TODOS.slice(startIndex, endIndex); // Resolvido o caso do tipo any
         const totalPages = Math.ceil(ALL_TODOS.length / limit);
 
         return {
@@ -88,7 +88,7 @@ function parseTodosFromServer(responseBody: unknown): { todos: Array<Todo> } {
                 return {
                     id,
                     content,
-                    done: Boolean(done),
+                    done: String(done).toLowerCase() === "true", // O valor passa a ser um boolean
                     date: new Date(date),
                 };
             }),
