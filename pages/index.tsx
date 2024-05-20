@@ -2,7 +2,6 @@ import React from "react";
 // import { GlobalStyles } from "../src/ui/theme/GlobalStyles"
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
 import { todoController } from "@ui/controller/todo";
-import todos from "./api/todos";
 
 const bg = "./bg.jpg"; // inside public folder
 
@@ -21,13 +20,21 @@ function HomePage() {
 
     const [todos, setTodos] = React.useState<HomeTodo[]>([]);
 
+    const [totalPages, setTotalPages] = React.useState(0);
+
+    console.log("totalPages", totalPages);
+
+    const hasMorePages = totalPages > page;
+
     // Load infos onload -> Carregar informações ao carregar
     React.useEffect(() => {
+        console.log("Aqui", page); // P -> 3:48
         // Quando ele tiver terminado
-        todoController.get({ page }).then(({ todos }) => {
+        todoController.get({ page }).then(({ todos, pages }) => {
             console.log(todos, "AAA");
 
             setTodos(todos);
+            setTotalPages(pages);
         });
     }, []);
 
@@ -109,29 +116,32 @@ function HomePage() {
                             </td>
                         </tr> */}
 
-                        <tr>
-                            <td
-                                colSpan={4}
-                                align="center"
-                                style={{ textAlign: "center" }}
-                            >
-                                <button
-                                    data-type="load-more"
-                                    onClick={() => setPage(page + 1)}
+                        {/* Se isso for true, vai mostrar, o que deverá mostra: */}
+                        {hasMorePages && (
+                            <tr>
+                                <td
+                                    colSpan={4}
+                                    align="center"
+                                    style={{ textAlign: "center" }}
                                 >
-                                    Página {page}, Carregar mais{""}
-                                    <span
-                                        style={{
-                                            display: "inline-block",
-                                            marginLeft: "4px",
-                                            fontSize: "1.2em",
-                                        }}
+                                    <button
+                                        data-type="load-more"
+                                        onClick={() => setPage(page + 1)}
                                     >
-                                        ↓
-                                    </span>
-                                </button>
-                            </td>
-                        </tr>
+                                        Página {page}, Carregar mais{""}
+                                        <span
+                                            style={{
+                                                display: "inline-block",
+                                                marginLeft: "4px",
+                                                fontSize: "1.2em",
+                                            }}
+                                        >
+                                            ↓
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </section>
