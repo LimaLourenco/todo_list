@@ -28,15 +28,17 @@ function HomePage() {
 
     // Load infos onload -> Carregar informações ao carregar
     React.useEffect(() => {
-        console.log("Aqui", page); // P -> 3:48
+        console.log("Aqui", page); // P -> 3:48* -> 6:31
         // Quando ele tiver terminado
         todoController.get({ page }).then(({ todos, pages }) => {
             console.log(todos, "AAA");
 
-            setTodos(todos);
+            setTodos((oldTodos) => {
+                return [...oldTodos, ...todos];
+            });
             setTotalPages(pages);
         });
-    }, []);
+    }, [page]);
 
     // console.log("TODOS", fetch("http://localhost:3002/api/todos"));
 
