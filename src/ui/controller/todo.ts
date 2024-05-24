@@ -11,7 +11,7 @@ async function get(params: TodoControllerGetParams) {
     console.log(params, "OOO");
     return todoRepository.get({
         page: params.page,
-        limit: 1,
+        limit: 2,
     });
 }
 
