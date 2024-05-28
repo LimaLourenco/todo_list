@@ -1,10 +1,12 @@
-import { read } from "@db-crud-todo";
+import { todoRepository } from "@server/repository/todo";
 import { NextApiRequest, NextApiResponse } from "next";
 
 function get(_req: NextApiRequest, res: NextApiResponse) {
-    const ALL_TODOS = read(); // Peguei aqui as informações
+    // Quando for mandar para tela do usuario -> output
+    const output = todoRepository.get();
+
     res.status(200).json({
-        todos: ALL_TODOS,
+        todos: output.todos,
     });
 }
 

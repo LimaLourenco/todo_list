@@ -24,7 +24,7 @@ function HomePage() {
 
     console.log("totalPages", totalPages);
 
-    const hasMorePages = totalPages > page;
+    const hasMorePages = totalPages > page; // **
 
     // Load infos onload -> Carregar informações ao carregar
     React.useEffect(() => {
