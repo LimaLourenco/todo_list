@@ -31,8 +31,6 @@ function HomePage() {
         console.log("Aqui", page); // P -> 3:48* -> 6:31
         // Quando ele tiver terminado
         todoController.get({ page }).then(({ todos, pages }) => {
-            console.log(todos, "AAA");
-
             setTodos((oldTodos) => {
                 return [...oldTodos, ...todos];
             });
