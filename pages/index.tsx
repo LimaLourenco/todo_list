@@ -26,17 +26,25 @@ function HomePage() {
 
     const hasMorePages = totalPages > page; // **
 
+    const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
+
     // Load infos onload -> Carregar informações ao carregar
+    // - React.useEffect(() => {}, [])
+    // - Roda no LOAD do componente
     React.useEffect(() => {
-        console.log("Aqui", page); // P -> 3:48* -> 6:31
-        // Quando ele tiver terminado
-        todoController.get({ page }).then(({ todos, pages }) => {
-            setTodos((oldTodos) => {
-                return [...oldTodos, ...todos];
+        console.log("initialLoadComplete", initialLoadComplete);
+
+        setInitialLoadComplete(true);
+
+        if (!initialLoadComplete) {
+            console.log("Aqui", page); // P -> 3:48* -> 6:31
+            // Quando ele tiver terminado
+            todoController.get({ page }).then(({ todos, pages }) => {
+                setTodos(todos);
+                setTotalPages(pages);
             });
-            setTotalPages(pages);
-        });
-    }, [page]);
+        }
+    }, []);
 
     // console.log("TODOS", fetch("http://localhost:3002/api/todos"));
 
@@ -126,7 +134,22 @@ function HomePage() {
                                 >
                                     <button
                                         data-type="load-more"
-                                        onClick={() => setPage(page + 1)}
+                                        onClick={() => {
+                                            const nextPage = page + 1;
+                                            setPage(nextPage);
+
+                                            todoController
+                                                .get({ page: nextPage })
+                                                .then(({ todos, pages }) => {
+                                                    setTodos((oldTodos) => {
+                                                        return [
+                                                            ...oldTodos,
+                                                            ...todos,
+                                                        ]; // Parei 7:54
+                                                    });
+                                                    setTotalPages(pages);
+                                                });
+                                        }}
                                     >
                                         Página {page}, Carregar mais{""}
                                         <span
