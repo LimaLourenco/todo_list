@@ -22,11 +22,16 @@ function HomePage() {
 
     const [totalPages, setTotalPages] = React.useState(0);
 
+    // Setando o estado com um valor
+    const [isLoading, setIsLoading] = React.useState(true);
+
     console.log("totalPages", totalPages);
 
     const hasMorePages = totalPages > page; // **
 
     const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
+
+    const hasNoTodos = todos.length === 0 && !isLoading;
 
     // Load infos onload -> Carregar informações ao carregar
     // - React.useEffect(() => {}, [])
@@ -39,10 +44,15 @@ function HomePage() {
         if (!initialLoadComplete) {
             console.log("Aqui", page); // P -> 3:48* -> 6:31
             // Quando ele tiver terminado
-            todoController.get({ page }).then(({ todos, pages }) => {
-                setTodos(todos);
-                setTotalPages(pages);
-            });
+            todoController
+                .get({ page })
+                .then(({ todos, pages }) => {
+                    setTodos(todos);
+                    setTotalPages(pages);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
         }
     }, []);
 
@@ -108,21 +118,25 @@ function HomePage() {
                             );
                         })}
 
-                        {/* <tr>
-                            <td
-                                colSpan={4}
-                                align="center"
-                                style={{ textAlign: "center" }}
-                            >
-                                Carregando...
-                            </td>
-                        </tr> */}
+                        {isLoading && (
+                            <tr>
+                                <td
+                                    colSpan={4}
+                                    align="center"
+                                    style={{ textAlign: "center" }}
+                                >
+                                    Carregando...
+                                </td>
+                            </tr>
+                        )}
 
-                        {/* <tr>
-                            <td colSpan={4} align="center">
-                                Nenhum item encontrado
-                            </td>
-                        </tr> */}
+                        {hasNoTodos && (
+                            <tr>
+                                <td colSpan={4} align="center">
+                                    Nenhum item encontrado
+                                </td>
+                            </tr>
+                        )}
 
                         {/* Se isso for true, vai mostrar, o que deverá mostra: */}
                         {hasMorePages && (
@@ -135,6 +149,7 @@ function HomePage() {
                                     <button
                                         data-type="load-more"
                                         onClick={() => {
+                                            setIsLoading(true);
                                             const nextPage = page + 1;
                                             setPage(nextPage);
 
@@ -148,6 +163,9 @@ function HomePage() {
                                                         ]; // Parei 7:54
                                                     });
                                                     setTotalPages(pages);
+                                                })
+                                                .finally(() => {
+                                                    setIsLoading(false);
                                                 });
                                         }}
                                     >
