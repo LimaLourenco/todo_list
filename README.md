@@ -17,3 +17,5 @@
 5.1. Melhorando a tipagem, Repositories e o começo da paginação;
 
 5.2. Resolvendo o estado duplicado do projeto em DEV com Strict Mode e Estados;
+
+5.3. Implementando nossa busca e seu primeiro generics no TypeScript;

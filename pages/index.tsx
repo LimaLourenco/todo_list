@@ -27,11 +27,20 @@ function HomePage() {
 
     console.log("totalPages", totalPages);
 
+    const [search, setSearch] = React.useState("e");
+
     const hasMorePages = totalPages > page; // **
 
     const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
 
     const hasNoTodos = todos.length === 0 && !isLoading;
+
+    const filteredTodos = todos.filter((todo) => {
+        // P -5:56
+        return todo.content.includes(search);
+    });
+
+    // setTodos(filteredTodos);
 
     // Load infos onload -> Carregar informações ao carregar
     // - React.useEffect(() => {}, [])
@@ -83,6 +92,10 @@ function HomePage() {
                     <input
                         type="text"
                         placeholder="Filtrar lista atual, ex: Dentista"
+                        // Função que o react recomenda para fazer operações de mundaças de operação no elemento.
+                        onChange={function handlerSearch(event) {
+                            console.log("Change!", event.target.value);
+                        }}
                     />
                 </form>
 
