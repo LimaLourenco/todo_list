@@ -27,18 +27,15 @@ function HomePage() {
 
     console.log("totalPages", totalPages);
 
-    const [search, setSearch] = React.useState("e");
+    const [search, setSearch] = React.useState("");
 
     const hasMorePages = totalPages > page; // **
 
     const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
 
-    const hasNoTodos = todos.length === 0 && !isLoading;
+    const homeTodos = todoController.filterTodosByContent<HomeTodo>(search, todos);
 
-    const filteredTodos = todos.filter((todo) => {
-        // P -5:56
-        return todo.content.includes(search);
-    });
+    const hasNoTodos = homeTodos.length === 0 && !isLoading;
 
     // setTodos(filteredTodos);
 
@@ -95,6 +92,7 @@ function HomePage() {
                         // Função que o react recomenda para fazer operações de mundaças de operação no elemento.
                         onChange={function handlerSearch(event) {
                             console.log("Change!", event.target.value);
+                        setSearch(event.target.value);
                         }}
                     />
                 </form>
@@ -112,16 +110,16 @@ function HomePage() {
                     </thead>
 
                     <tbody>
-                        {todos.map((currentTodo) => {
+                        {homeTodos.map((todos) => {
                             return (
-                                <tr key={currentTodo.id}>
+                                <tr key={todos.id}>
                                     {/* Aqui estou passando o id por inteiro, como id único, que é baseado na quantidade de itens da Api. */}
                                     <td>
                                         <input type="checkbox" />
                                     </td>
-                                    <td>{currentTodo.id.substring(0, 5)}</td>
+                                    <td>{todos.id.substring(0, 5)}</td>
                                     {/* Aqui o id também é passado como único, mas cada item da Api, vai ser baseado no seu id especifico. */}
-                                    <td>{currentTodo.content}</td>
+                                    <td>{todos.content}</td>
                                     <td align="right">
                                         <button data-type="delete">
                                             Apagar
