@@ -31,9 +31,14 @@ function HomePage() {
 
     const hasMorePages = totalPages > page; // **
 
-    const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
+    // const [initialLoadComplete, setInitialLoadComplete] = React.useState(false);
 
-    const homeTodos = todoController.filterTodosByContent<HomeTodo>(search, todos);
+    const initialLoadComplete = React.useRef(false);
+
+    const homeTodos = todoController.filterTodosByContent<HomeTodo>(
+        search,
+        todos
+    );
 
     const hasNoTodos = homeTodos.length === 0 && !isLoading;
 
@@ -43,11 +48,11 @@ function HomePage() {
     // - React.useEffect(() => {}, [])
     // - Roda no LOAD do componente
     React.useEffect(() => {
-        console.log("initialLoadComplete", initialLoadComplete);
+        console.log("initialLoadComplete", initialLoadComplete.current);
 
-        setInitialLoadComplete(true);
+        // setInitialLoadComplete(true);
 
-        if (!initialLoadComplete) {
+        if (!initialLoadComplete.current) {
             console.log("Aqui", page); // P -> 3:48* -> 6:31
             // Quando ele tiver terminado
             todoController
@@ -58,6 +63,7 @@ function HomePage() {
                 })
                 .finally(() => {
                     setIsLoading(false);
+                    initialLoadComplete.current = true;
                 });
         }
     }, []);
@@ -92,7 +98,7 @@ function HomePage() {
                         // Função que o react recomenda para fazer operações de mundaças de operação no elemento.
                         onChange={function handlerSearch(event) {
                             console.log("Change!", event.target.value);
-                        setSearch(event.target.value);
+                            setSearch(event.target.value);
                         }}
                     />
                 </form>

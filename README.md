@@ -18,4 +18,6 @@
 
 5.2. Resolvendo o estado duplicado do projeto em DEV com Strict Mode e Estados;
 
-5.3. Implementando nossa busca e seu primeiro generics no TypeScript;
+5.3. Implementando a busca, e usando generics no TypeScript;
+
+5.4. Dica extra de React - useRef para controle de fluxo;
