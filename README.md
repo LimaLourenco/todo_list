@@ -21,3 +21,7 @@
 5.3. Implementando a busca, e usando generics no TypeScript;
 
 5.4. Dica extra de React - useRef para controle de fluxo;
+
+6. Terminando as operações CRUD no projeto;
+
+6.1. POST - Criando nossas TODOs "Controlando” o fluxo;
