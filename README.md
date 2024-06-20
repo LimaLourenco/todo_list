@@ -12,7 +12,7 @@
 
 - 1. Observação 2: Foi adicionados três arquivos que fazem parte da qualidade do código: O editorconfig, o eslintrc.js e o prettierrc. Sendo o eslintrc.js com a função de aplicar as regras de lint, o prettierrc com a função de padronizar toda a escrita de código, como por exemplo: limitando o tamanho de linha, e outras configurações. E já o editorconfig com sua função para padronizar algumas coisas especificas como por exemplo: a configuração de espaçamento do meu editor, e assim tendo o eslint como o administrador do conjunto todo. 
 
-5. GET - Protocolo HTTP Integrando do Back ao Front com Controllers;
+5. GET - Protocolo HTTP, e Integrando do Back ao Front com Controllers;
 
 5.1. Melhorando a tipagem, Repositories e o começo da paginação;
 
@@ -24,4 +24,4 @@
 
 6. Terminando as operações CRUD no projeto;
 
-6.1. POST - Criando nossas TODOs "Controlando” o fluxo;
+6.1. POST - Criando nossas TODOs, e "Controlando” o fluxo;
