@@ -24,4 +24,4 @@
 
 6. Terminando as operações CRUD no projeto;
 
-6.1. POST - Criando nossas TODOs, e "Controlando” o fluxo;
+6.1. POST - Criando as TODOs, e "Controlando” o fluxo;
