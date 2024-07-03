@@ -66,13 +66,17 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function create(req: NextApiRequest, res: NextApiResponse) {
-    // const createTodo = todoRepository.createByContent();
+    const createdTodo = await todoRepository.createByContent(req.body.content);
+
+    console.log("createdTodo", createdTodo); // P -> 9:30*
 
     res.status(201).json({
-        todo: {
-            id: "112213131314",
-            content: req.body.content, // P -> 7:39
-        },
+        // todo: {
+        //     id: "112213131314",
+        //     content: req.body.content, // P -> 7:39
+        // },
+
+        todo: createdTodo,
     });
 }
 

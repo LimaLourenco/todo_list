@@ -15,8 +15,11 @@ async function get(params: TodoControllerGetParams) {
     });
 }
 
-function filterTodosByContent<Todo>(search: string, todos: Array<Todo & {content: string}>): Array<Todo> {
-     // Vai representar as todos na minha HomePage
+function filterTodosByContent<Todo>(
+    search: string,
+    todos: Array<Todo & { content: string }>
+): Array<Todo> {
+    // Vai representar as todos na minha HomePage
     const homeTodos = todos.filter((todo) => {
         const searchNormalized = search.toLowerCase();
         const contentNormalized = todo.content.toLowerCase();
@@ -28,5 +31,5 @@ function filterTodosByContent<Todo>(search: string, todos: Array<Todo & {content
 
 export const todoController = {
     get,
-    filterTodosByContent
+    filterTodosByContent,
 };
