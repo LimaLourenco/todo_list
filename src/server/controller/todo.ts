@@ -1,5 +1,7 @@
 import { todoRepository } from "@server/repository/todo";
+import { z as zod } from "zod";
 import { NextApiRequest, NextApiResponse } from "next";
+import { parse } from "uuid";
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
     const query = req.query;
@@ -67,6 +69,11 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 
 async function create(req: NextApiRequest, res: NextApiResponse) {
     const createdTodo = await todoRepository.createByContent(req.body.content);
+
+    // Fail Fast Validations - Se o body é valido
+    const body = parse(req.body);
+
+    // Retorna un erro, caso não tenha `content`
 
     console.log("createdTodo", createdTodo); // P -> 9:30*
 
