@@ -1,7 +1,6 @@
 import { todoRepository } from "@server/repository/todo";
-import { z as zod } from "zod";
+import { z as schema } from "zod";
 import { NextApiRequest, NextApiResponse } from "next";
-import { parse } from "uuid";
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
     const query = req.query;
@@ -67,13 +66,32 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
     });
 }
 
+// Schema do body que vou receber aqui
+const TodoCreateBodySchema = schema.object({
+    content: schema.string(),
+});
+
 async function create(req: NextApiRequest, res: NextApiResponse) {
-    const createdTodo = await todoRepository.createByContent(req.body.content);
+    // Fail Fast Validations - Se o body é valido -> P -> 6:35
+    // const body = parse(req.body);
 
-    // Fail Fast Validations - Se o body é valido
-    const body = parse(req.body);
+    const body = TodoCreateBodySchema.safeParse(req.body);
 
+    // Type Narrowing
     // Retorna un erro, caso não tenha `content`
+    if (!body.success) {
+        res.status(400).json({
+            error: {
+                message: "You need to provide a content to create a TODO",
+                // description: body.error,
+                description: body.error.issues,
+            },
+        });
+        return;
+    }
+
+    // Here we have the data!
+    const createdTodo = await todoRepository.createByContent(body.data.content);
 
     console.log("createdTodo", createdTodo); // P -> 9:30*
 
