@@ -83,7 +83,13 @@ function HomePage() {
                     <h1>O que fazer hoje?</h1>
                 </div>
                 <form>
-                    <input type="text" placeholder="Correr, Estudar..." />
+                    <input
+                        type="text"
+                        placeholder="Correr, Estudar..."
+                        onChange={function newTodoHandler(event) {
+                            console.log(event.target.value);
+                        }}
+                    />
                     <button type="submit" aria-label="Adicionar novo item">
                         +
                     </button>
@@ -91,7 +97,12 @@ function HomePage() {
             </header>
 
             <section>
-                <form>
+                <form
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        todoController.create();
+                    }}
+                >
                     <input
                         type="text"
                         placeholder="Filtrar lista atual, ex: Dentista"

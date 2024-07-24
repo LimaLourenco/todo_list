@@ -29,7 +29,15 @@ function filterTodosByContent<Todo>(
     return homeTodos;
 }
 
+// Parei Aqui -> 04:43
+interface TodoControllerCreateParams {
+    content: string;
+}
+
+function create({ content }) {}
+
 export const todoController = {
     get,
     filterTodosByContent,
+    create,
 };
