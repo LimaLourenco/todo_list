@@ -34,7 +34,9 @@ interface TodoControllerCreateParams {
     content: string;
 }
 
-function create({ content }) {}
+function create({ content }: TodoControllerCreateParams) {
+    console.log("controller.content", content);
+}
 
 export const todoController = {
     get,

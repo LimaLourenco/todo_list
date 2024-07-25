@@ -40,6 +40,8 @@ function HomePage() {
         todos
     );
 
+    const [newTodoContent, setNewTodoContent] = React.useState("");
+
     const hasNoTodos = homeTodos.length === 0 && !isLoading;
 
     // setTodos(filteredTodos);
@@ -82,12 +84,24 @@ function HomePage() {
                 <div className="typewriter">
                     <h1>O que fazer hoje?</h1>
                 </div>
-                <form>
+                <form
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        // Tem que pelo menos passar objeto aqui, e tem que ter o content
+                        // Aqui está resgatando o content.
+                        todoController.create({
+                            content: newTodoContent,
+                        });
+                    }}
+                >
                     <input
                         type="text"
                         placeholder="Correr, Estudar..."
                         onChange={function newTodoHandler(event) {
-                            console.log(event.target.value);
+                            // Passando o content para o state da página
+                            // console.log(event.target.value);
+                            // Parei -> 06:38
+                            setNewTodoContent(event.target.value);
                         }}
                     />
                     <button type="submit" aria-label="Adicionar novo item">
@@ -97,12 +111,7 @@ function HomePage() {
             </header>
 
             <section>
-                <form
-                    onSubmit={(event) => {
-                        event.preventDefault();
-                        todoController.create();
-                    }}
-                >
+                <form>
                     <input
                         type="text"
                         placeholder="Filtrar lista atual, ex: Dentista"
