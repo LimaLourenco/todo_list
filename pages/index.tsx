@@ -91,6 +91,17 @@ function HomePage() {
                         // Aqui está resgatando o content.
                         todoController.create({
                             content: newTodoContent,
+                            // Exemplos: De controlador em views:
+                            onSuccess(todo: HomeTodo) {
+                                setTodos((oldTodos) => {
+                                    return [todo, ...oldTodos];
+                                });
+                            },
+                            onError() {
+                                alert(
+                                    "Voce precisa de ter um conteudo para criar uma TODO!!!"
+                                );
+                            },
                         });
                     }}
                 >
@@ -100,7 +111,7 @@ function HomePage() {
                         onChange={function newTodoHandler(event) {
                             // Passando o content para o state da página
                             // console.log(event.target.value);
-                            // Parei -> 06:38
+                            // Parei -> 06:38*
                             setNewTodoContent(event.target.value);
                         }}
                     />
