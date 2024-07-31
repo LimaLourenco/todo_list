@@ -91,11 +91,12 @@ function HomePage() {
                         // Aqui está resgatando o content.
                         todoController.create({
                             content: newTodoContent,
-                            // Exemplos: De controlador em views:
+                            // Exemplo: De controlador em views:
                             onSuccess(todo: HomeTodo) {
                                 setTodos((oldTodos) => {
                                     return [todo, ...oldTodos];
                                 });
+                                setNewTodoContent("");
                             },
                             onError() {
                                 alert(
@@ -108,6 +109,7 @@ function HomePage() {
                     <input
                         type="text"
                         placeholder="Correr, Estudar..."
+                        value={newTodoContent}
                         onChange={function newTodoHandler(event) {
                             // Passando o content para o state da página
                             // console.log(event.target.value);
