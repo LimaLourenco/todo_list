@@ -56,12 +56,12 @@ export const todoRepository = {
 };
 
 // Seria um exemplo de: Model ou Schema - // Parei em 9:45
-interface Todo {
-    id: string;
-    content: string;
-    date: Date;
-    done: boolean;
-}
+// interface Todo {
+//     id: string;
+//     content: string;
+//     date: Date;
+//     done: boolean;
+// }
 
 function parseTodosFromServer(responseBody: unknown): {
     total: number;
