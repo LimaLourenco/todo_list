@@ -9,7 +9,8 @@ import { z as schema } from "zod";
 
 // Parei no 2:00
 export const TodoSchema = schema.object({
-    id: schema.string(),
+    id: schema.string().uuid(),
     content: schema.string(),
-    date: schema.string(),
+    date: schema.string().datetime(),
+    done: schema.boolean(),
 });
