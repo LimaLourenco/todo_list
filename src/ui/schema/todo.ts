@@ -14,3 +14,5 @@ export const TodoSchema = schema.object({
     date: schema.string().datetime(),
     done: schema.boolean(),
 });
+
+export type Todo = schema.infer<typeof TodoSchema>;

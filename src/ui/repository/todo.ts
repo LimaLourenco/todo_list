@@ -1,3 +1,5 @@
+import { Todo } from "@ui/schema/todo";
+
 interface TodoRepositoryGetParams {
     page: number;
     limit: number;
@@ -51,8 +53,26 @@ function get({
     );
 }
 
+export async function createByContent(content: string): Promise<Todo> {
+    const response = await fetch("/api/todos", {
+        method: "POST",
+        // Tipo de dado enviado para o servidor, conhecido como MIME Type
+        headers: {
+            "Content-type": "application/json",
+        },
+        // Estou dando o conteudo para ser enviado
+        // Vai ser enviado no body
+        // Pela rede, só se trafegá String, então não pode ser somente o objeto do javaScript.
+        // Parei em 10:14...
+        body: JSON.stringify({
+            content,
+        }),
+    });
+}
+
 export const todoRepository = {
     get,
+    createByContent,
 };
 
 // Seria um exemplo de: Model ou Schema - // Parei em 9:45
@@ -100,7 +120,8 @@ function parseTodosFromServer(responseBody: unknown): {
                     id,
                     content,
                     done: String(done).toLowerCase() === "true", // O valor passa a ser um boolean
-                    date: new Date(date),
+                    // date: new Date(date),
+                    date: date,
                 };
             }),
         };
