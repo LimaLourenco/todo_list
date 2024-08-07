@@ -1,4 +1,5 @@
-import { Todo } from "@ui/schema/todo";
+import { z as schema } from "zod";
+import { Todo, TodoSchema } from "@ui/schema/todo";
 
 interface TodoRepositoryGetParams {
     page: number;
@@ -56,18 +57,33 @@ function get({
 export async function createByContent(content: string): Promise<Todo> {
     const response = await fetch("/api/todos", {
         method: "POST",
-        // Tipo de dado enviado para o servidor, conhecido como MIME Type
+        // Que tipo de dado estou enviando para o servidor, conhecido como MIME Type
         headers: {
             "Content-type": "application/json",
         },
         // Estou dando o conteudo para ser enviado
         // Vai ser enviado no body
         // Pela rede, só se trafegá String, então não pode ser somente o objeto do javaScript.
-        // Parei em 10:14...
         body: JSON.stringify({
             content,
         }),
     });
+
+    if (response.ok) {
+        const serverResponse = await response.json();
+        // É { todo: com tipo que eu espero -> Todo }
+        // TodoSchema.safeParse()
+        // Parei 14:01..
+        const serverResponseSchema = schema.object({
+            // Este todo vai o todoSchema
+            todo: TodoSchema,
+        });
+        console.log("serverResponse", serverResponse);
+        const todo = {};
+        return todo;
+    }
+    // Se não tiver ok o response
+    throw new Error("Failed to create TODO");
 }
 
 export const todoRepository = {
