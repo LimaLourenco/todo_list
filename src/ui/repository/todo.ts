@@ -71,15 +71,25 @@ export async function createByContent(content: string): Promise<Todo> {
 
     if (response.ok) {
         const serverResponse = await response.json();
-        // É { todo: com tipo que eu espero -> Todo }
+        // É o serverResponse -> { todo: com tipo que eu espero -> Todo }
         // TodoSchema.safeParse()
-        // Parei 14:01..
-        const serverResponseSchema = schema.object({
+        // Realizei uma composição aqui
+        const ServerResponseSchema = schema.object({
             // Este todo vai o todoSchema
             todo: TodoSchema,
         });
+
+        const serverResponseParsed =
+            ServerResponseSchema.safeParse(serverResponse);
+
+        if (!serverResponseParsed.success) {
+            throw new Error("Failed to create TODO :(");
+        }
+
         console.log("serverResponse", serverResponse);
-        const todo = {};
+
+        console.log("serverResponse", serverResponseParsed);
+        const todo = serverResponseParsed.data.todo;
         return todo;
     }
     // Se não tiver ok o response

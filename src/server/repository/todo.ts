@@ -23,7 +23,7 @@ function get({
 
     console.log(currentPage, currentPageLimit);
 
-    const ALL_TODOS = read(); // Peguei aqui as informações
+    const ALL_TODOS = read().reverse(); // Peguei aqui as informações
 
     const startIndex = (currentPage - 1) * currentPageLimit;
     const endIndex = currentPage * currentPageLimit;

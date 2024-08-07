@@ -41,13 +41,22 @@ interface TodoControllerCreateParams {
 function create({ content, onError, onSuccess }: TodoControllerCreateParams) {
     console.log("controller.content", content);
     // Fail Fast
-    // se não tiver o content
+    // se não tiver o content / conteudo
     if (!content) {
         onError();
         return; // O return, para parar de executar o controller.
     }
 
-    todoRepository.createByContent(content);
+    todoRepository
+        // Se conseguir criar dá o sucesso.
+        .createByContent(content)
+        .then((newTodo) => {
+            onSuccess(newTodo);
+        })
+        // Se não conseguir criar passo o erro.
+        .catch(() => {
+            onError();
+        });
 
     // // Este dado vai ter que vir do Repository
     // const todo = {
@@ -59,6 +68,7 @@ function create({ content, onError, onSuccess }: TodoControllerCreateParams) {
 
     // Perei em 2:46
     // onSuccess(todo);
+
     // console.log("Criada com sucesso");
 }
 
